@@ -1,3 +1,4 @@
+#코드업 1408번
 s = input()
 
 for i in range(len(s)):
