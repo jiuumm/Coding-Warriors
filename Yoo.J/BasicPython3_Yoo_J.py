@@ -6,7 +6,7 @@ lst.sort()
 for i in range(len(lst)):
     print(lst[i], end=' ')
     
-    
+   
 # 코드업 기본 100제 1420번
 #딕셔너리 이용!
 n = int(input())
@@ -17,6 +17,7 @@ for i in range(n):
 
 #내림 차순으로 정리하기 위해 reverse=True로 바꿔주기    
 answer = sorted(dit.items(), key= lambda x:x[1], reverse=True)
+print(answer[2][0])
 
     
     
