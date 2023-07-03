@@ -1,4 +1,5 @@
 #codeup 6082번
+
 n=int(input("100 보다 작은 정수:"))
 for i in range(1,n+1):
   x=i//10
