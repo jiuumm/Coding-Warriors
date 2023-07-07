@@ -1,6 +1,6 @@
 #배열 원소의 최댓값을 구해서 출력하기(원솟값을 입력받음)
 
-from prctice2_2 import max_of
+from practice_2_2 import max_of       #왜2_2만 import가 안되는 걸까....?
 
 print('배열의 최댓값을 구합니다.')
 print('주의: End를 입력하면 종료합니다.')
