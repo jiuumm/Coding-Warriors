@@ -15,8 +15,7 @@ sol
 각각 한 개의 랜선의 길이를 최대로 만들어라!
 
 '''
-import sys
-sys.stdin= open("in1.txt", "r")
+
 
 def Count(len):
     cnt=0
