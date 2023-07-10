@@ -1,3 +1,4 @@
+#6098
 m = []
 
 # 12x12 크기의 맵 생성
@@ -37,5 +38,5 @@ while True:
 # 맵 출력
 for i in range(1, 11):
     for j in range(1, 11):
-        print(m[i][j], space=' ')
+        print(m[i][j], end=' ')
     print()
