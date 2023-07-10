@@ -8,6 +8,8 @@ def solution(n, times):
         people=0
         for time in times:
             people+=pc//time
+            if people>=n:
+                break
         if people>=n:
             answer=pc
             pr=pc-1
