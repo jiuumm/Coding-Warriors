@@ -1,13 +1,21 @@
-K, N = map(int,input().split())
-l = sorted([int(input()) for _ in range(K)])
-start, end = 1, sum(l)//N
-while start <= end:
-    mid = (start+end)//2
-    lines = sum([i//mid for i in l])
-    if lines >=N:
-        start = mid+1
-        ans = mid
+K, N = map(int, input().split())
+
+li = []
+for _ in range(K):
+    li.append(int(input()))
+
+li.sort()
+
+pl, pr = 1, sum(li) // N
+ans = 0
+
+while pl <= pr:
+    pc = (pl + pr) // 2
+    count = sum(line // pc for line in li)
+    if count >= N:
+        ans = pc
+        pl = pc + 1
     else:
-        end = mid-1
+        pr = pc - 1
 
 print(ans)
