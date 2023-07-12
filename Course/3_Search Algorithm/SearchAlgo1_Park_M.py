@@ -1,4 +1,3 @@
-#아직 런타임 에러 발생하지만 고칠예정*
 N = int(input())
 A = list(map(int, input().split()))
 
