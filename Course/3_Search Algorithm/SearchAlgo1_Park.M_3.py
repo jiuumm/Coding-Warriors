@@ -11,7 +11,7 @@ ans = 0
 
 while pl <= pr:
     pc = (pl + pr) // 2
-    count = sum(word // pc for word in li)
+    count = sum(line // pc for line in li)
     if count >= N:
         ans = pc
         pl = pc + 1
