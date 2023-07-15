@@ -1,8 +1,9 @@
-#230715 SAT
+# 230715 SAT
 
 # 고정 길이 스택 클래스 FixedStack 구현하기
 # 실습 4-1 [A]
 from typing import Any
+
 
 class FixedStack:
     """고정 길이 스택 클래스"""
@@ -18,8 +19,8 @@ class FixedStack:
     def __init__(self, capacity: int = 256) -> None:
         """초기화"""
         self.stk = [None] * capacity  # 스택 본체
-        self.capacity = capacity      # 스택의 크기
-        self.ptr = 0                  # 스택 포인터
+        self.capacity = capacity  # 스택의 크기
+        self.ptr = 0  # 스택 포인터
 
     def __len__(self) -> int:
         """스택에 쌓여있는 데이터 개수를 반환"""
@@ -33,24 +34,24 @@ class FixedStack:
         """스택은 가득 찼는가?"""
         return self.ptr >= self.capacity
 
-# 실습 4-1 [B]
+    # 실습 4-1 [B]
     def push(self, value: Any) -> None:
         """스택에 value를 푸시"""
-        if self.is_full():              # 스택이 가득 참
+        if self.is_full():  # 스택이 가득 참
             raise FixedStack.Full
         self.stk[self.ptr] = value
         self.ptr += 1
 
     def pop(self) -> Any:
         """스택에서 데이터를 팝(꼭대기 데이터를 꺼냄)"""
-        if self.is_empty():             # 스택이 비어 있음
-             raise FixedStack.Empty
+        if self.is_empty():  # 스택이 비어 있음
+            raise FixedStack.Empty
         self.ptr -= 1
         return self.stk[self.ptr]
 
     def peek(self) -> Any:
         """스택에서 데이터를 피크(꼭대기 데이터를 들여다 봄)"""
-        if self.is_empty():             # 스택이 비어 있음
+        if self.is_empty():  # 스택이 비어 있음
             raise FixedStack.Empty
         return self.stk[self.ptr - 1]
 
@@ -58,27 +59,25 @@ class FixedStack:
         """스택을 비움(모든 데이터를 삭제)"""
         self.ptr = 0
 
-# 실습 4-1 [C]
+    # 실습 4-1 [C]
     def find(self, value: Any) -> Any:
         """스택에서 value를 찾아 첨자(없으면 -1)를 반환"""
         for i in range(self.ptr - 1, -1, -1):  # 꼭대기 쪽부터 선형 검색
             if self.stk[i] == value:
                 return i  # 검색 성공
-        return -1         # 검색 실패
+        return -1  # 검색 실패
 
     def count(self, value: Any) -> bool:
         """스택에 포함되어있는 value의 개수를 반환"""
         c = 0
         for i in range(self.ptr):  # 바닥 쪽부터 선형 검색
             if self.stk[i] == value:
-                c += 1             # 들어 있음
+                c += 1  # 들어 있음
         return c
 
     def __contains__(self, value: Any) -> bool:
         """스택에 value가 있는가?"""
         return self.count(value)
-
-
 
     def dump(self) -> None:
         """덤프(스택 안의 모든 데이터를 바닥부터 꼭대기 순으로 출력)"""
@@ -87,6 +86,7 @@ class FixedStack:
         else:
             print(self.stk[:self.ptr])
 
+
 # 실습 4-2 고정 길이 스택 FixedStack의 사용하기
 
 from enum import Enum
@@ -94,21 +94,23 @@ from fixed_stack import FixedStack
 
 Menu = Enum('Menu', ['푸시', '팝', '피크', '검색', '덤프', '종료'])
 
+
 def select_menu() -> Menu:
     """메뉴 선택"""
     s = [f'({m.value}){m.name}' for m in Menu]
     while True:
-        print(*s, sep = '   ', end='')
+        print(*s, sep='   ', end='')
         n = int(input(': '))
         if 1 <= n <= len(Menu):
             return Menu(n)
+
 
 s = FixedStack(64)  # 최대 64개를 푸시할 수 있는 스택
 
 while True:
     print(f'현재 데이터 개수: {len(s)} / {s.capacity}')
     menu = select_menu()  # 메뉴 선택
-    
+
     if menu == Menu.푸시:  # 푸시
         x = int(input('데이터를 입력하세요.: '))
         try:
