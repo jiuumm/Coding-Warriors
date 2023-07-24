@@ -1,5 +1,4 @@
-# sorted(정렬할 데이터, key 파라미터)
-
+#풀이1
 def solution(genres, plays):
     answer = []
     data = {}
@@ -22,5 +21,22 @@ def solution(genres, plays):
         
         for song in songs_s[:2]:
             answer.append(song[0])
+    
+    return answer
+
+#풀이2
+def solution(genres, plays):
+    answer = []
+    data = {genre: [] for genre in genres} # 장르를 key로 한 딕셔너리 data 생성
+    for z in zip(genres, plays, range(len(genres))): # 장르, 재생 횟수, 고유 번호
+        data[z[0]].append([z[1] , z[2]]) # 재생 횟수와 고유 번호를 리스트로 value로 할당
+        
+    genres_s = sorted(list(data.keys()), key = lambda x: sum(map(lambda y: y[0], data[x])), reverse = True)
+    # 장르를 총 재생 횟수대로 정렬한 새로운 리스트 생성
+    
+    for genre in genres_s:
+        songs_number = [song[1] for song in sorted(data[genre], key = lambda x: (x[0], -x[1]), reverse = True)]
+        # 장르 별 노래들을 재생 횟수와 고유 번호 순으로 정렬하고, 정렬된 고유 번호들로만 새로운 리스트 생성
+        answer += songs_number[:min(len(songs_number), 2)] # answer에 2보다 더 짧으면 리스트 길이만큼, 더 길면 2개 추가
     
     return answer
