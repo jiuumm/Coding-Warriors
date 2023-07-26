@@ -1,4 +1,4 @@
-#버블 정렬 알고리즘 구현하기(알고리즘의 개선 1)
+#버블 정렬 알고리즘 구현하기(알고리즘의 개선 1) - 중단 방식 적용
 
 from typing import MutableSequence
 
