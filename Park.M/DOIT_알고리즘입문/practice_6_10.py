@@ -7,7 +7,7 @@ def partition(a: MutableSequence) -> None:
     n = len(a)
     pl = 0
     pr = n-1
-    x = a[n//2]
+    x = a[n//2]                                                           # x가 피벗
 
     while pl<=pr:
         while a[pl] < x: pl += 1
