@@ -11,7 +11,7 @@ def qsort(a: MutableSequence, left:int, right:int)-> None:
     while pl <= pr:
         while a[pl] < x: pl+=1
         while a[pr] > x: pr-=1
-        if pl<=pr:
+        if pr<pl:
             a[pl], a[pr] = a[pr], a[pl]
             pl += 1
             pr -= 1
