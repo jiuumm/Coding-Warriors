@@ -16,20 +16,20 @@ def merge_sort(a: MutableSequence)-> None:
             i = k = left
 
             while i <= center:                                # left <= center
-                buff[p] = a[i]
-                p += 1
+                buff[p] = a[i]                                # buff의 커서: p, 배열의 앞부분 커서: i
+                p += 1                                        # 배열의 앞부분을 buff에 똑같이 옮긴다
                 i += 1
 
-            while i <= right and j<p:
-                if buff[j] <= a[i]:
-                    a[k] = buff[j]
+            while i <= right and j<p:                         # 배열의 뒷부분과 앞부분을 비교한다
+                if buff[j] <= a[i]:                           # 정렬된 뒷부분과 앞부분을 앞에서 부터 비교한다 -> 뒷부분 첫번째/앞부분 첫번째 원소부터 go
+                    a[k] = buff[j]                            # 비교한 결과를 작은 순서대로 배열에 저장한다
                     j+=1
                 else:
                     a[k] = a[i]
                     i+= 1
                 k += 1
 
-            while j < p:
+            while j < p:                                      # 남은 나머지 원소를 배열에 복사
                 a[k] = buff[j]
                 k += 1
                 j += 1
