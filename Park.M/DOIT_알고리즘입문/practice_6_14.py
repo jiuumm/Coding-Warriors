@@ -1,10 +1,10 @@
-#정렬을 마친 두 배열을 병합하기
+#정렬을 마친 두 배열을 병합하기 ____병합 정렬
 
 from typing import Sequence, MutableSequence
 
 def merge_sorted_list(a:Sequence, b:Sequence, c:MutableSequence)-> None:
     """정렬을 마친 배열 a와 b를 병합하여 c에 저장"""
-    pa, pb, pc = 0,0,0
+    pa, pb, pc = 0,0,0                                                               #처음에 커서 모두 0으로 초기화
     na, nb, nc = len(a), len(b), len(c)
 
     while pa<na and pb<nb:
