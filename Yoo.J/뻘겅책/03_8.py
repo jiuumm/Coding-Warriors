@@ -1,4 +1,5 @@
 import sys
+<<<<<<< HEAD
 input= sys.stdin.readline
 
 S, P = map(int, input().split())
@@ -27,3 +28,34 @@ for i in range(S-P+1):
         cnt += 1
 
 print(cnt)
+=======
+sys.stdin = open("input.txt", "r")
+n= int(input())
+input= sys.stdin.readline
+lst = list(map(int, input().split()))
+lst.sort()
+res=0
+for i in range(n):
+    lt=0
+    rt=n-1
+    cnt=0
+    #목표값: lst[i]
+    while lt<rt:
+        if lst[lt]+lst[rt]<lst[i]:
+            lt+=1
+        elif lst[lt]+lst[rt]>lst[i]:
+            rt-=1
+        else:
+            #값이 같을 때
+            if lt != i and rt != i:
+                cnt+=1
+                break
+            elif lt==i:
+                lt+=1
+                
+            elif rt==i:
+                rt-=1
+                
+    res += cnt       
+print(res)
+>>>>>>> f1303b936392b292854e5d9f0d9047a7b48bf7b5
