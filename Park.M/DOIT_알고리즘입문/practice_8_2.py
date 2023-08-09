@@ -1,7 +1,7 @@
 #포인터를 이용한 연결 리스트 클래스 LinkedList 사용하기
 
 from enum import Enum
-from linked_list import LinkedList
+from practice_8_1 import LinkedList
 
 Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '머리노드삭제',
                      '꼬리노드삭제', '주목노드출력', '주목노드이동',
@@ -10,17 +10,17 @@ Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '머리�
 
 def select_Menu() -> Menu:
     """메뉴 선택"""
-    s = [f'({m.value}){m.name}' for m in Menu]
+    s = [f'({m.value}){m.name}' for m in Menu]                                                        #enum에서 리스트에 수를 auto로 부여할 경우에 0이 아닌 1부터 시작
     while True:
-        print(*s, sep=' ', end='')
+        print(*s, sep=' ', end='')                                                                    #Menu에 있는 것들 차례대로 출력
         n = int(input(': '))
         if 1<=n<=len(Menu):
             return Menu(n)
         
-lst = LinkedList()
+lst = LinkedList()                                                                                    #연결 리스트 생성
 
 while True:
-    menu = select_Menu()
+    menu = select_Menu()                                                                              
 
     if menu == Menu.머리에노드삽입:
         lst.add_first(int(input('머리 노드에 넣을 값을 입력하세요: ')))
@@ -54,4 +54,15 @@ while True:
             print('해당하는 데이터가 없습니다.')
 
     elif menu == Menu.멤버십판단:
-        print('그 값의 데이터는')
+        print('그 값의 데이터는 포함되어'
+              +('있습니다.' if int(input('판단할 값을 입력하세요: ')) in lst else '있지 않습니다.'))
+        
+    elif menu == Menu.모든노드출력:
+        lst.print()
+
+    elif menu == Menu.스캔:
+        for e in lst:
+            print(e)
+
+    else:
+        break
