@@ -56,7 +56,7 @@ class ArrayLinkedList:
             self.n[idx].dnext = rec
     
     def search(self, data: Any) -> int:
-        """data와 값이 같은 노드를 검색"""4
+        """data와 값이 같은 노드를 검색"""
         cnt = 0
         ptr = self.head                                         #현재 스캔 중인 노드
         while ptr != Null:
@@ -73,31 +73,31 @@ class ArrayLinkedList:
     
     def add_first(self, data: Any):
         """머리 노드에 삽입"""
-        ptr = self.head
+        ptr = self.head                                         #삽입하기 전의 머리 노드
         rec = self.get_insert_index()
         if rec!=Null:
-            self.head = self.current = rec
+            self.head = self.current = rec                      #rec번째 레코드에 삽입
             self.n[self.head] = Node(data, ptr)
             self.no += 1
 
     def add_last(self, data: Any) -> None:
         """꼬리 노드에 삽입"""
-        if self.head == Null:
-            self.add_first(data)
+        if self.head == Null:                                   #리스트가 비어 있으면
+            self.add_first(data)                                #맨 앞에 노드 삽입
         else:
             ptr = self.head
             while self.n[ptr].next != Null:
                 ptr = self.n[ptr].next
             rec = self.get_insert_index()
 
-            if rec!=Null:
+            if rec!=Null:                                       #rec번째 레코드에 삽입
                 self.n[ptr].next = self.current = rec
                 self.n[rec] = Node(data)
                 self.no += 1
 
     def remove_first(self) -> None:
         """머리 노드를 삭제"""
-        if self.head!= Null:
+        if self.head!= Null:                                    #리스트가 비어 있으면
             ptr = self.n[self.head].next
             self.delete_index(self.head)
             self.head = self.current = ptr
@@ -105,4 +105,94 @@ class ArrayLinkedList:
     
     def remove_last(self) -> None:
         """꼬리 노드를 삭제"""
-        
+        if self.head != Null:
+            if self.n[self.head].next == Null:                  #노드가 1개 뿐이면
+                self.remove_first                               #머리 노드를 삭제
+            else:
+                ptr = self.head                                 #스캔 중인 노드
+                pre = self.head                                 #스캔 중인 노드의 앞쪽 노드
+
+                while self.n[ptr].next != Null:
+                    pre = ptr
+                    ptr = self.n[ptr].next
+                self.n[pre].next = Null                         #pre는 삭제한 뒤의 꼬리 노드
+                self.delete_index(ptr)
+                self.current = pre
+                self.no -= 1
+
+    def remove(self, p: int) -> None:
+        """레코드 p를 삭제"""
+        if self.head != Null:
+            if p==self.head:
+                self.remove_first()                             #p가 머리노드이면 머리 노드를 삭제
+            else:
+                ptr = self.head
+
+                while self.n[ptr].next != p:
+                    ptr = self.n[ptr].next
+                    if ptr == Null:
+                        return                                  #p는 리스트에 존재하지 않음
+                self.n[ptr].next = Null
+                self.delete_index(p)
+                self.n[ptr].next = self.n[p].next
+                self.current = ptr
+                self.no -= 1
+
+    def remove_current_node(self) -> None:
+        """주목 노드를 삭제"""
+        self.remove(self.current)
+
+    def clear(self) -> None:
+        """모든 노드를 삭제"""
+        while self.head != Null:
+            self.remove_first()
+            self.current = Null
+    
+    def next(self) -> bool:
+        """주목 노드를 한 칸 뒤로 이동"""
+        if self.current == Null or self.n[self.current].next == Null:
+            return False                                        #이동할 수 없음
+        self.current = self.n[self.current].next
+        return True
+    
+    def print_current_node(self) -> None:
+        """주목 노드를 출력"""
+        if self.current == Null:
+            print('주목 노드가 없습니다.')
+        else:
+            print(self.n[self.current].data)
+
+    def print(self) -> None:
+        """모든 노드를 출력"""
+        ptr = self.head
+
+        while ptr != Null:
+            print(self.n[ptr].data)
+            ptr = self.n[ptr].next
+
+    def dump(self) -> None:
+        """배열을 덤프"""
+        for i in self.n:
+            print(f'[{i}] {i.data} {i.next} {i.dnext}')
+
+    def __iter__(self) -> ArrayLinkedListIterator:
+        """이터레이터를 반환"""
+        return ArrayLinkedListIterator(self.n, self.head)
+    
+class ArrayLinkedListIterator:
+    """클래스 ArrayLinkedList의 이터레이터용 클래스"""
+
+    def __init__(self, n: int, head: int):
+        self.n = n
+        self.current = head
+
+    def __iter__(self) -> ArrayLinkedListIterator:
+        return self
+    
+    def __next__(self) -> Any:
+        if self.current == Null:
+            raise StopIteration
+        else:
+            data = self.n[self.current].data
+            self.current = self.n[self.current].next
+            return data
