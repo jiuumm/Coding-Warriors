@@ -84,6 +84,19 @@ class BinarySearchTree:
             if p is self.root:
                 self.root = p.right
             elif is_left_child:
-                parent.left = p.right
+                parent.left = p.right                                 #부모의 왼쪽 포인터가 오른쪽 자식을 가리킴
             else:
-                parent.right = p.right
+                parent.right = p.right                                #부모의 오른쪽 포인터가 오른쪽 자식을 가리킴
+
+        elif p.right is None:                                         #p에 오른쪽 자식이 없으면
+            if p is self.root:
+                self.root = p.left
+            elif is_left_child:
+                parent.left = p.left                                  #부모의 왼쪽 포인터가 왼쪽 자식을 가리킴
+            else:
+                parent.right = p.left                                 #부모의 오른쪽 포인터가 왼쪽 자식을 가리킴
+        
+        else:
+            parent = p
+            left = p.left
+            
