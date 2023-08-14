@@ -1,8 +1,15 @@
+#BOOK_4
+#백준 11660
+
+
+
 import sys
 input = sys.stdin.readline
+
 n, m = map(int, input().split())
-A = [[0]* (n+1)]
-D = [[0]* (n+1) for _ in range(n+1)]
+
+A = [[0]* (n+1)]                                                                #A : 원본 리스트
+D = [[0]* (n+1) for _ in range(n+1)]                                            #D : 합배열
 
 for i in range(n):
     A_row = [0] + [int(x) for x in input().split()]
@@ -17,6 +24,3 @@ for _ in range(m):
     x1, y1, x2, y2 = map(int, input().split())
     result = D[x2][y2] - D[x1-1][y2] - D[x2][y1-1] + D[x1-1][y1-1]
     print(result)
-
-
-#..흠...오늘껀 내용 책에다.......................................
