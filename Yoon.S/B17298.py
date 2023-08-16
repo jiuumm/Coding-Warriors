@@ -8,9 +8,4 @@ for i in range(n):
         ans[myStack.pop()] = A[i]
     myStack.append(i)
 
-result = ""
-
-for i in range(n):
-    result += str(ans[i]) + " "
-
-print(result)
+print(*ans)

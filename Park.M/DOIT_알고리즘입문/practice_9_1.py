@@ -97,6 +97,55 @@ class BinarySearchTree:
                 parent.right = p.left                                 #부모의 오른쪽 포인터가 왼쪽 자식을 가리킴
         
         else:
-            parent = p
-            left = p.left
-            
+            parent = p                                                #삭제할 노드의 부모노드 저장
+            left = p.left                                             #삭제할 노드의 왼쪽 서브트리에서 가장 큰 노드 찾기
+            is_left_child = True                                      #가장 큰 노드가 왼쪽 자식인가를 나타냄
+            while left.right is not None:                             #왼쪽 서브트리에서 가장 큰 노드는 오른쪽 자식이 없는 노드이다. 오른쪽 자식이 없을 때까지 반복
+                parent = left                                         #현재 노드를 부모로 설정
+                left = left.right                                     #현재 노드의 오른쪽 자식으로 이동
+                is_left_child = False                                 #오른쪽 자식을 검색하므로 False 설정
+
+        p.key =  left.key                                             #left의 키를 p로 이동
+        p.value = left.value                                          #left의 데이터를 p로 이동
+        if is_left_child:
+            parent.left = left.left                                   #left를 삭제
+        else:
+            parent.right = left.left                                  #left를 삭제
+
+    def dump(self, reverse = False) -> None:
+        """덤프(모든 노드를 키의 오름차순/내림차순으로 출력)"""
+
+        def print_subtree(node: Node):
+            """node를 루트로 하는 서브트리의 노드를 키의 오름차순으로 출력"""
+            if node is not None:
+                print_subtree(node.left)                              #왼쪽 서브트리를 오름차순으로 출력
+                print(f'{node.key} {node.value}')                     #node를 출력
+                print_subtree(node.right)                             #오른쪽 서브트리를 오름차순으로 출력
+        
+        def print_subree_rev(node: Node):
+            """node를 루트로 하는 서브트리의 노드를 키의 내림차순으로 출력"""
+            if node is not None:
+                print_subree_rev(node.right)                          #오른쪽 서브트리를 내림차순으로 출력
+                print(f'{node.key} {node.value}')                     #node를 출력
+                print_subree_rev(node.left)                           #왼쪽 서브트리를 내림차순으로 출력
+
+        print_subtree_rev(self.root) if reverse else print_subtree(self.root)
+
+
+    def min_key(self) -> Any:
+        """가장 작은 키"""
+        if self.root is None:
+            return None
+        p = self.root
+        while p.left is not None:
+            p = p.left
+            return p.key
+        
+    def max_key(self) -> Any:
+        """가장 큰 키"""
+        if self.root is None:
+            return None
+        p = self.root
+        while p.right is not None:
+            p = p.right
+        return p.key
