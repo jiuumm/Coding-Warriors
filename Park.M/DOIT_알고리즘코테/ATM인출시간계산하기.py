@@ -5,7 +5,7 @@ S = [0]*N                                               #합배열 생성
 
 for i in range(1, N):                                   #삽입 정렬
     insert_point = i
-    insert_val0ue = A[i]
+    insert_value = A[i]
     for j in range(i-1, -1, -1):
         if A[j] < A[i]:
             insert_point = j+1
