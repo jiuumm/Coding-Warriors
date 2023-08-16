@@ -1,3 +1,8 @@
+#BOOK_13
+#백준 2164
+
+
+
 from collections import deque                                                   # 파이썬에서는 큐를 deque로 구현
 N = int(input())                                                                # 카드의 개수 입력받기
 myQueue = deque()                                                               # deque 생성
