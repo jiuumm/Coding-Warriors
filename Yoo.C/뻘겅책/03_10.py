@@ -7,10 +7,10 @@ mydeque = deque()
 now = list(map(int, input().split()))
 #덱의 구조: (값, 인덱스)
 for i in range(N):
-    # mydeque[-1][0]은 덱의 마지막 요소의 값을 의미. 이 값이 지금 들어오는 값보다 크면 삭제 (왜?-> 최솟값을 찾는 거니깐!)
+    # mydeque[-1][0]은 덱의 마지막 요소의 '값'을 의미. 이 값이 지금 들어오는 값보다 크면 삭제 (왜?-> 최솟값을 찾는 거니깐!)
     while mydeque and mydeque[-1][0]> now[i]:
         mydeque.pop()
-    # 최신으로 들어온 값과 인덱스를 덱에 저장한다.(append 함수 이용)
+    # 최신으로 들어온 값과 인덱스를 튜플 형태로!! 덱에 저장한다.(append 함수 이용)
     mydeque.append((now[i], i)) 
     
     # 만약 덱의 첫번째 요소의 인덱스가 i(현재 인덱스)-L(슬라이딩 윈도우 크기)

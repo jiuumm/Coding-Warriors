@@ -9,10 +9,10 @@ myQueue = PriorityQueue()
 
 for i in range(n):
     request = int(input()) #받는 수 
-    if request == 0:
+    if request == 0:# 받는 수가 0이면 출력!
         if myQueue.empty(): #큐가 비어있으면 0출력
             print('0\n')
-        else:
+        else: #큐가 비어있지 않으면
             tmp = myQueue.get()#큐가 비어있지 않으면 우선순위로 가져오기
             print(str(tmp[1])+'\n')
     else:
