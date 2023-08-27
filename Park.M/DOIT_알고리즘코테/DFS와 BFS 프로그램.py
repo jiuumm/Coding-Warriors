@@ -1,3 +1,8 @@
+#BOOK_26
+#백준 1260
+
+
+
 from collections import deque
 N, M, Start = map(int, input().split())
 A = [[] for _ in range(N+1)]
