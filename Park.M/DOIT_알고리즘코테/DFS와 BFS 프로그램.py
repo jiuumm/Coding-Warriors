@@ -30,7 +30,8 @@ def BFS(v):
     queue.append(v)                                             # 현재 노드 저장
     visited[v] = True                                           # 방문 리스트 업뎃
     while queue:                                                # 큐가 비어있지 않을 때
-        now_Node = queue.popleft()                              # 현재 
+        now_Node = queue.popleft()                              # popleft() : 왼쪽 첫번째 요소를 제거하고 반환. 큐에서 요소를 꺼내면, 해당 요소는 큐에서 제거되고 반환되는 값이 now_Node에 저장됨
+                                                                # 이 상태에서 now_Node는 pop된 노드 그대로의 값
         print(now_Node, end=' ')                                # 가져온 노드 출력
         for i in A[now_Node]:                                   # 현재 노드의 연결 노드들
             if not visited[i]:                                  # 미방문 노드            
