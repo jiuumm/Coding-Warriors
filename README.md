@@ -4,4 +4,4 @@
 ![CW](https://github.com/jiuumm/Coding-Warriors/assets/129494557/c10c2f66-f234-4d28-a397-c8477e24c605)
 
 
-![Uploading 제목을-입력해주세요__복사본-001.png…]()
+![코워](https://github.com/jiuumm/Coding-Warriors/assets/129347578/dc573679-3362-4843-a7fa-ae4c342eec06)
