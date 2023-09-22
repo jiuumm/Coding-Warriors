@@ -1,3 +1,4 @@
+#점화식
 N=int(input())
 
 def add(n):
