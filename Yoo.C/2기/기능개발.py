@@ -30,4 +30,4 @@ def solution(progresses, speeds):
 
     return answer
 
-solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1])
+#solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1])
