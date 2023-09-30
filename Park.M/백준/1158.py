@@ -1,4 +1,4 @@
-#요세푸스 문제
+#요세푸스 문제 --- 큐로 풀면 시간초과 problem 발생!!!!!!!!!
 
 from queue import Queue
 
@@ -17,3 +17,4 @@ def josephus_q(n, k):
 
 result = josephus_q(n, k)
 print(result)
+
